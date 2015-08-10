@@ -38,7 +38,7 @@ class MenuItem extends Sprite
 		var lableFontSize = 21;
 		var lableFontColor = 0x333333;
 		var lableFormat = new TextFormat(Settings.font, lableFontSize, lableFontColor);
-		var lablePosition = { x: 5, y:  this.width / 2 };
+		var lablePosition = { x: 5, y:  this.itemWidth / 2 };
 		
 		lable = new TextField();
 		lable.defaultTextFormat = lableFormat;
