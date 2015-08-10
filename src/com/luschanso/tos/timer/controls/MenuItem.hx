@@ -6,6 +6,7 @@ import openfl.Lib;
 import openfl.text.TextField;
 import openfl.text.TextFieldAutoSize;
 import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
 
 /**
  * ...
@@ -35,17 +36,18 @@ class MenuItem extends Sprite
 	
 	function addLable(text:String):Void
 	{
-		var lableFontSize = 21;
+		var lableFontSize = 21; // (427e30d9-817a-4b7a-a129-ef3380aa1ac6) TODO: Переделать на зависимость от размера дисплея
 		var lableFontColor = 0x333333;
 		var lableFormat = new TextFormat(Settings.font, lableFontSize, lableFontColor);
-		var lablePosition = { x: 5, y:  this.itemWidth / 2 };
+		lableFormat.align = TextFormatAlign.CENTER;
+		var lablePosition = { x: this.itemWidth / 2, y: this.itemHeight / 2 };
 		
 		lable = new TextField();
 		lable.defaultTextFormat = lableFormat;
-		lable.autoSize = TextFieldAutoSize.LEFT;
-		lable.x = lablePosition.x;
-		lable.y = lablePosition.y;
 		lable.text = text;
+		lable.autoSize = TextFieldAutoSize.LEFT;
+		lable.x = lablePosition.x - lable.width / 2;
+		lable.y = lablePosition.y - lable.height / 2;	
 		lable.selectable = false;
 		
 		this.addChild(lable);		
