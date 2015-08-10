@@ -26,8 +26,8 @@ class MenuItem extends Sprite
 	{
 		super();
 		
-		this.itemHeight  = MenuItem.itemHeightPercent * Lib.application.window.height;
-		this.itemWidth= MenuItem.itemWidthPercent * Lib.application.window.width;
+		this.itemHeight = MenuItem.itemHeightPercent * Lib.application.window.height;
+		this.itemWidth = MenuItem.itemWidthPercent * Lib.application.window.width;
 		
 		this.addLable(text);
 		this.addSplitter();
