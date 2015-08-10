@@ -39,7 +39,16 @@ class MenuItem extends Sprite
 	
 	function addLable(text:String):Void
 	{
-		var lableFontSize = 21; // (427e30d9-817a-4b7a-a129-ef3380aa1ac6) TODO: Переделать на зависимость от размера дисплея
+		#if !mobile
+		
+		var lableFontSize = 21;
+		
+		#else
+		
+		var lableFontSize = 62;
+		
+		#end
+		
 		var lableFontColor = 0x333333;
 		var lableFormat = new TextFormat(Settings.font, lableFontSize, lableFontColor);
 		lableFormat.align = TextFormatAlign.CENTER;
