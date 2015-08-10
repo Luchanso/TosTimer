@@ -31,6 +31,7 @@ class ScreenEvent extends Event
 		super(type, bubbles, cancelable);
 		
 		this.calledScreenName = calledScreenName;
+		this.eventOwner = eventOwner;
 	}
 	
 }
