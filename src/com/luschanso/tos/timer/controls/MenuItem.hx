@@ -21,11 +21,14 @@ class MenuItem extends Sprite
 	var itemWidth 	:Float;
 	var itemHeight	:Float;
 	
+	public var realHeight(get, null):Float;
 	public var text(get, set):String;
 
 	public function new(text:String = "")
 	{
 		super();
+		
+		// 4c9c10c2-678b-424f-9351-9092171e78f9 TODO: Сделать анимацию нажатия
 		
 		this.itemHeight = MenuItem.itemHeightPercent * Lib.application.window.height;
 		this.itemWidth = MenuItem.itemWidthPercent * Lib.application.window.width;
@@ -75,4 +78,8 @@ class MenuItem extends Sprite
 		return this.lable.text = value;
 	}
 	
+	function get_realHeight():Float
+	{
+		return this.itemHeight;
+	}
 }
