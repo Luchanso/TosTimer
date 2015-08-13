@@ -19,6 +19,8 @@
 	<haxelib name="actuate" />
 	<haxelib name="haxeui" />
 	
+	<assets path="assets/svg" rename="icons" />
+	
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->
 	
