@@ -35,6 +35,9 @@ class MenuItem extends Sprite
 		
 		this.addLable(text);
 		this.addSplitter();
+		
+		this.mouseEnabled = true;
+		this.buttonMode = true;
 	}
 	
 	function addLable(text:String):Void
