@@ -14,6 +14,7 @@ import openfl.text.TextFormatAlign;
  */
 class MenuItem extends Sprite
 {
+	// 29cb78b0-3ff3-4869-86f0-24a505d8ab60 Добавить в MenuItem стрелочку вправо
 	static inline var itemHeightPercent	:Float 	= 0.1;
 	static inline var itemWidthPercent	:Float 	= 1;
 	
