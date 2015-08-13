@@ -1,6 +1,7 @@
 package com.luschanso.tos.timer;
 
 import com.luschanso.tos.timer.screens.MainMenu;
+import com.luschanso.tos.timer.screens.WorkScreen;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.Lib;
@@ -39,8 +40,14 @@ class Main extends Sprite
 		var mainMenu = new MainMenu();
 		mainMenu.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
 		mainMenu.show();
-			
+		
+		var workScreen = new WorkScreen();
+		workScreen.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
+		
 		this.screenList.add(mainMenu);
+		this.screenList.add(workScreen);
+		
+		// 41253e87-9c82-4499-a504-a0f58ce803fe TODO: Добавить все экраны
 	}
 	
 	function addScreenList()
