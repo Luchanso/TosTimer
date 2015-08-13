@@ -47,6 +47,6 @@ class MainMenu extends Screen
 	
 	private function beginSessionItem_click(e:MouseEvent):Void 
 	{
-		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, ""));
+		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, "WorkScreen"));
 	}
 }
