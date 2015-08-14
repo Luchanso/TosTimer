@@ -69,7 +69,7 @@ class MenuItem extends Sprite
 		#end
 		
 		var lableFontColor = 0x333333;
-		var lableFormat = new TextFormat(Settings.font, lableFontSize, lableFontColor);
+		var lableFormat = new TextFormat(Settings.style.font, lableFontSize, lableFontColor);
 		lableFormat.align = TextFormatAlign.CENTER;
 		var lablePosition = { x: this.itemWidth / 2, y: this.itemHeight / 2 };
 		

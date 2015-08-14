@@ -6,5 +6,8 @@ package com.luschanso.tos.timer;
  */
 class Settings
 {
-	public static inline var font = "Arial";
+	public static var style = {
+		font: "Arial",
+		uiColor: 0x0080F0
+	}
 }
