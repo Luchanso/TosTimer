@@ -2,6 +2,8 @@ package com.luschanso.tos.timer.screens;
 
 import com.luschanso.tos.timer.controls.BackButton;
 import com.luschanso.tos.timer.Screen;
+import com.luschanso.tos.timer.ScreenEvent;
+import openfl.events.MouseEvent;
 
 /**
  * ...
@@ -26,11 +28,20 @@ class WorkScreen extends Screen
 	
 	function addBackButton()
 	{
+		var marginLeftBackButton = 10;
+		var marginTopBackButton = 10;
+		
 		backButton = new BackButton();
-		backButton.x = 0;
-		backButton.y = 0;
+		backButton.x = marginLeftBackButton;
+		backButton.y = marginTopBackButton;
+		backButton.addEventListener(MouseEvent.CLICK, backButton_click);
 		
 		addChild(backButton);
+	}
+	
+	function backButton_click(e:MouseEvent):Void 
+	{
+		dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, "MainMenu"));
 	}
 	
 }
