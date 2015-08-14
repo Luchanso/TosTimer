@@ -16,8 +16,6 @@ class WorkScreen extends Screen
 	{
 		super();
 		
-		this.name = "WorkScreen";
-		
 		this.addHeader();
 	}
 	

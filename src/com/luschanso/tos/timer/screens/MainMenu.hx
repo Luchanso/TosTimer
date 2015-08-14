@@ -16,8 +16,6 @@ class MainMenu extends Screen
 	{
 		super();
 		
-		this.screenName = "MainMenu";
-		
 		var beginSessionItem = new MenuItem("Начать сессию");
 		beginSessionItem.addEventListener(MouseEvent.CLICK, beginSessionItem_click);
 		
@@ -35,17 +33,17 @@ class MainMenu extends Screen
 	}
 	
 	// c2294e1d-65ed-46ba-b4ee-c473ca57a73c TODO: Прописать правильные линки
-	private function instructionItem_click(e:MouseEvent):Void 
+	private function instructionItem_click(e:MouseEvent):Void
 	{
-		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, ""));	
+		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, ""));
 	}
 	
-	private function exportItem_click(e:MouseEvent):Void 
+	private function exportItem_click(e:MouseEvent):Void
 	{
-		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, ""));		
+		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, ""));
 	}
 	
-	private function beginSessionItem_click(e:MouseEvent):Void 
+	private function beginSessionItem_click(e:MouseEvent):Void
 	{
 		this.dispatchEvent(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, this, "WorkScreen"));
 	}

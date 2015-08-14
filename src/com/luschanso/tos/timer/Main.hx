@@ -39,10 +39,12 @@ class Main extends Sprite
 		
 		var mainMenu = new MainMenu();
 		mainMenu.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
+		mainMenu.setName("MainMenu");
 		mainMenu.show();
 		
 		var workScreen = new WorkScreen();
 		workScreen.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
+		workScreen.setName("WorkScreen");
 		
 		this.screenList.add(mainMenu);
 		this.screenList.add(workScreen);
