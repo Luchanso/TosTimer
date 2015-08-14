@@ -18,6 +18,7 @@
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
 	<haxelib name="haxeui" />
+	<haxelib name="svg" />
 	
 	<assets path="assets/svg" rename="icons" />
 	
