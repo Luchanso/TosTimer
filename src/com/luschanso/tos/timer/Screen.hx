@@ -14,6 +14,11 @@ class Screen extends Sprite
 	
 	public var screenName:String;
 	
+	public function setName(name:String)
+	{
+		this.screenName = name;
+	}
+	
 	public function show():Void
 	{
 		this.visible = true;
