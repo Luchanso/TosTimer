@@ -1,7 +1,7 @@
 package com.luschanso.tos.timer.controls;
 
+import format.SVG;
 import openfl.Assets;
-import openfl.display.Bitmap;
 import openfl.display.Sprite;
 
 /**
@@ -10,20 +10,29 @@ import openfl.display.Sprite;
  */
 class BackButton extends Sprite
 {
-	var leftArrow : Bitmap;
+	var leftArrow : SVG;
 
-	// 4de88c1d-1dce-42c2-a22e-9bfb974ca764 Реализовать BackButton
-	public function new() 
+	public function new()
 	{
 		super();
 		
-		var leftArrowBitmapData = Assets.getBitmapData("icons/left-arrow.svg");
-		leftArrow = new Bitmap(leftArrowBitmapData);
-		
-		addChild(leftArrow);
+		this.drawIcon();
 		
 		this.mouseEnabled = true;
 		this.buttonMode = true;
 	}
 	
+	function drawIcon()
+	{
+		var iconSize = 75;
+		var leftArrowData = Assets.getText("icons/arrow-left.svg");
+		leftArrow = new SVG(leftArrowData);
+		
+		//graphics.lineStyle(1, Settings.style.uiColor);
+		//graphics.beginFill(Settings.style.uiColor);
+		
+		leftArrow.render(this.graphics, 0, 0, iconSize, iconSize);
+		
+		//graphics.endFill();
+	}
 }
