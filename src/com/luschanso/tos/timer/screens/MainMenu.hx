@@ -23,11 +23,11 @@ class MainMenu extends Screen
 		
 		var exportItem = new MenuItem("Экспорт");
 		exportItem.addEventListener(MouseEvent.CLICK, exportItem_click);
-		exportItem.y = beginSessionItem.realHeight;
+		exportItem.y = beginSessionItem.realHeight + 1;
 		
 		var instructionItem = new MenuItem("Инструкция");
 		instructionItem.addEventListener(MouseEvent.CLICK, instructionItem_click);
-		instructionItem.y = exportItem.y + exportItem.realHeight;
+		instructionItem.y = exportItem.y + exportItem.realHeight + 1;
 		
 		this.addChild(beginSessionItem);
 		this.addChild(exportItem);
