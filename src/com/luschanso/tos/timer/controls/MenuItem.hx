@@ -1,9 +1,9 @@
 package com.luschanso.tos.timer.controls;
 
 import com.luschanso.tos.timer.ScreenEvent;
-import format.SVG;
 import openfl.Assets;
 import openfl.display.Bitmap;
+import openfl.display.PixelSnapping;
 import openfl.display.Sprite;
 import openfl.Lib;
 import openfl.text.TextField;
@@ -22,12 +22,11 @@ class MenuItem extends Sprite
 	
 	static inline var itemHeightPercent	:Float 	= 0.1;
 	static inline var itemWidthPercent	:Float 	= 1;
-	static inline var iconSize			:Float 	= 50;
 	
 	var lable 		:TextField;
 	var itemWidth 	:Float;
 	var itemHeight	:Float;
-	var rightArrow	:SVG;
+	var rightArrow	:Bitmap;
 
 	public function new(text:String = "")
 	{
@@ -81,7 +80,7 @@ class MenuItem extends Sprite
 		lable.y = lablePosition.y - lable.height / 2;
 		lable.selectable = false;
 		
-		this.addChild(lable);		
+		this.addChild(lable);
 	}
 	
 	/**
@@ -98,14 +97,21 @@ class MenuItem extends Sprite
 	
 	function addRightArrow() 
 	{
-		var iconMarginRight = 50;
-		var rightArrowData = Assets.getText("icons/arrow-right.svg");
-		var iconX = itemWidth - iconSize;
-		var iconY = itemHeight / 2 - iconSize / 4;
-		rightArrow = new SVG(rightArrowData);
-	
-		graphics.lineStyle(1, 0x000000);
-		rightArrow.render(this.graphics, iconX, iconY, iconSize, iconSize);
+		var iconMarginRight = 10;
+		var iconSize = 25;
+		
+		var rightArrowData = Assets.getBitmapData("icons/arrow-right.png");
+		
+		var iconY = itemHeight / 2 - iconSize / 2;
+		var iconX = itemWidth - iconSize - iconMarginRight;
+		
+		rightArrow = new Bitmap(rightArrowData, PixelSnapping.AUTO, true);
+		rightArrow.width = iconSize;
+		rightArrow.height = iconSize;
+		rightArrow.x = iconX;
+		rightArrow.y = iconY;
+		
+		addChild(rightArrow);
 	}
 	
 	function get_text():String 
