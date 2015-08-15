@@ -40,11 +40,12 @@ class Main extends Sprite
 		var mainMenu = new MainMenu();
 		mainMenu.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
 		mainMenu.setName("MainMenu");
-		mainMenu.show();
+		//mainMenu.show();
 		
 		var workScreen = new WorkScreen();
 		workScreen.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
 		workScreen.setName("WorkScreen");
+		workScreen.show();
 		
 		this.screenList.add(mainMenu);
 		this.screenList.add(workScreen);
@@ -81,8 +82,8 @@ class Main extends Sprite
 
 	function addVerticalCenterLine():Void
 	{
-		var halfWidthWindow = Lib.application.window.width / 2;
-		var heightWindow 	= Lib.application.window.height;
+		var halfWidthWindow = Settings.width / 2;
+		var heightWindow 	= Settings.height;
 		
 		this.graphics.beginFill(0xF90006);
 		this.graphics.drawRect(halfWidthWindow, 0, 2, heightWindow);

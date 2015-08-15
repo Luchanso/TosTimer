@@ -11,7 +11,7 @@
 	<window background="#FFFFFF" fps="60" />
 	<window width="360" height="640" unless="mobile" />
 	<window width="1080" height="1920" if="mobile" />
-	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
+	<window resizable="false" orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
 	<source path="src" />

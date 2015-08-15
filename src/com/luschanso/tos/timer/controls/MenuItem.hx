@@ -34,8 +34,8 @@ class MenuItem extends Sprite
 		
 		// 4c9c10c2-678b-424f-9351-9092171e78f9 TODO: Сделать анимацию нажатия
 		
-		this.itemHeight = MenuItem.itemHeightPercent * Lib.application.window.height;
-		this.itemWidth = MenuItem.itemWidthPercent * Lib.application.window.width;
+		this.itemHeight = MenuItem.itemHeightPercent * Settings.height;
+		this.itemWidth = MenuItem.itemWidthPercent * Settings.width;
 		
 		this.addBackground();
 		this.addLable(text);
