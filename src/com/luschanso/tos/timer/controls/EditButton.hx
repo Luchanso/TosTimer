@@ -1,6 +1,7 @@
 package com.luschanso.tos.timer.controls;
-import format.SVG;
 import openfl.Assets;
+import openfl.display.Bitmap;
+import openfl.display.PixelSnapping;
 import openfl.display.Sprite;
 import openfl.text.TextField;
 import openfl.text.TextFieldAutoSize;
@@ -14,7 +15,7 @@ import openfl.text.TextFormatAlign;
 class EditButton extends Sprite
 {
 	var lable 	:TextField;
-	var icon 	:SVG;
+	var icon 	:Bitmap;
 
 	public function new() 
 	{
@@ -26,13 +27,19 @@ class EditButton extends Sprite
 		this.buttonMode = true;
 	}
 	
-	function addIcon() 
+	function addIcon()
 	{
-		var iconSize = 50;
-		var plusIconData = Assets.getText("icons/plus.svg");
+		var iconSize = 24;
+		var plusIconData = Assets.getBitmapData("icons/plus.png");
 		
-		icon = new SVG(plusIconData);
-		icon.render(graphics, lable.width, 0, iconSize, iconSize);
+		icon = new Bitmap(plusIconData, PixelSnapping.AUTO, true);
+		icon.width = iconSize;
+		icon.height = iconSize;
+		
+		icon.x = lable.width;
+		icon.y = lable.height / 2 - iconSize / 2;
+		
+		addChild(icon);
 	}
 	
 	function addLable() 
