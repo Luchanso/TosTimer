@@ -50,6 +50,11 @@ class Main extends Sprite
 		this.screenList.add(workScreen);
 		
 		// 41253e87-9c82-4499-a504-a0f58ce803fe TODO: Добавить все экраны
+		/*
+		 * EditScreen
+		 * ExportScreen
+		 * Instruction
+		 */
 	}
 	
 	function addScreenList()
