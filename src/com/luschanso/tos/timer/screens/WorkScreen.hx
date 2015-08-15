@@ -6,6 +6,10 @@ import com.luschanso.tos.timer.Screen;
 import com.luschanso.tos.timer.ScreenEvent;
 import openfl.events.MouseEvent;
 import openfl.Lib;
+import openfl.text.TextField;
+import openfl.text.TextFieldAutoSize;
+import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
 
 /**
  * ...
@@ -13,8 +17,10 @@ import openfl.Lib;
  */
 class WorkScreen extends Screen
 {
-	var backButton : BackButton;
-	var editButton : EditButton;
+	var backButton 		: BackButton;
+	var editButton 		: EditButton;
+	var mainViewTime   	: TextField;
+	var summViewTime 	: TextField;
 	
 	// 4c9adfb8-5828-4cd7-b760-60643b9a4222 TODO: Реализовать класс WorkScreen
 	public function new()
@@ -22,7 +28,7 @@ class WorkScreen extends Screen
 		super();
 		
 		this.addHeader();
-		this.addMainTimer();
+		this.addMainViewTime();
 		this.addTimerList();
 		this.addSummaryTimer();
 	}
@@ -33,9 +39,26 @@ class WorkScreen extends Screen
 		addEditButton();
 	}
 	
-	function addMainTimer() 
+	function addMainViewTime() 
 	{
+		var labelMarginTop = 50;
+		var lableText = "00:00:00";
+		var lableFontSize = 50;
+		var lableFontColor = 0x333333;
+		var lableFormat = new TextFormat(Settings.style.font, lableFontSize, lableFontColor);
+		lableFormat.align = TextFormatAlign.LEFT;
+		var lablePosition = { x: Settings.width / 2, y: labelMarginTop };
 		
+		mainViewTime = new TextField();
+		mainViewTime.width = 0;
+		mainViewTime.x = lablePosition.x;
+		mainViewTime.y = lablePosition.y;
+		mainViewTime.defaultTextFormat = lableFormat;
+		mainViewTime.autoSize = TextFieldAutoSize.CENTER;
+		mainViewTime.text = lableText;	
+		mainViewTime.selectable = false;
+		
+		addChild(mainViewTime);
 	}
 	
 	function addTimerList() 
@@ -45,17 +68,34 @@ class WorkScreen extends Screen
 	
 	function addSummaryTimer() 
 	{
+		var labelMarginBottom = 10;
+		var lableText = "t(общ.) = 00:00:00";
+		var lableFontSize = 21;
+		var lableFontColor = 0x333333;
+		var lableFormat = new TextFormat(Settings.style.font, lableFontSize, lableFontColor);
+		lableFormat.align = TextFormatAlign.LEFT;
+		var lablePosition = { x: Settings.width / 2, y: Settings.height - labelMarginBottom };
 		
+		summViewTime = new TextField();
+		summViewTime.defaultTextFormat = lableFormat;
+		summViewTime.width = 0;		
+		summViewTime.x = lablePosition.x;
+		summViewTime.y = lablePosition.y - lableFontSize - labelMarginBottom;
+		summViewTime.autoSize = TextFieldAutoSize.CENTER;
+		summViewTime.text = lableText;
+		summViewTime.selectable = false;
+		
+		addChild(summViewTime);
 	}
 	
 	function addEditButton() 
 	{
 		var marginTopEditButton = 10;
-		var marginRightEditButton = 15;
+		var marginRightEditButton = 10;
 		
 		editButton = new EditButton();
 		editButton.y = marginTopEditButton;
-		editButton.x = Lib.application.window.width - editButton.width - marginRightEditButton;
+		editButton.x = Settings.width - editButton.width - marginRightEditButton;
 		editButton.addEventListener(MouseEvent.CLICK, editButton_click);
 		
 		addChild(editButton);
