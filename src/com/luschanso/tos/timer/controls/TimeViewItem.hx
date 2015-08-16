@@ -16,6 +16,7 @@ import openfl.text.TextFormatAlign;
  */
 class TimeViewItem extends Sprite
 {
+	// effb6300-220c-48d3-8323-36da448f8361 Добавить возможность смены имени и времени таймера
 	public var realHeight(get, null):Float;	
 	
 	static inline var itemHeightPercent	:Float 	= 0.1;
@@ -38,13 +39,13 @@ class TimeViewItem extends Sprite
 		
 		this.fillBackground();
 		this.addSplitter();
-		this.addTextField();
-		this.addButton();	
+		this.addTextField(null, secondsToTimeString(time));
+		this.addButton();
 	}
 	
 	function toggleState(e:MouseEvent)
 	{
-		
+		// f7307e53-4ab2-4ebd-aa20-86c350fa1104 доделать смену кнопок
 	}
 	
 	function addButton() 
@@ -76,15 +77,14 @@ class TimeViewItem extends Sprite
 		buttonStop.visible = false;
 	}
 	
-	function addTextField()
+	function addTextField(name:String = "По умолчанию", time:String = "00:00")
 	{
 		var lableFontSize = 25;
 		var lableFontColor = 0x333333;
 		var marginLeft = 10;
-		var defaultText = "00:00";
 		var lableFormat = new TextFormat(Settings.style.font, lableFontSize, lableFontColor);
 		lableFormat.align = TextFormatAlign.CENTER;
-		var lablePosition = { x: marginLeft, y: 0 };
+		var lablePosition = { x: marginLeft, y: itemHeight / 2 - lableFontSize / 2 };
 		
 		_lable = new TextField();
 		_lable.defaultTextFormat = lableFormat;
@@ -92,7 +92,7 @@ class TimeViewItem extends Sprite
 		_lable.x = lablePosition.x;
 		_lable.y = lablePosition.y;
 		_lable.selectable = false;
-		_lable.text = defaultText;
+		_lable.text = name + " (" + time + ")";
 		
 		this.addChild(_lable);
 	}
@@ -113,6 +113,51 @@ class TimeViewItem extends Sprite
 		graphics.beginFill(backgroundColor);
 		graphics.drawRect(0, 0, itemWidth, itemHeight);
 		graphics.endFill();
+	}
+	
+	function secondsToTimeString(seconds:Float):String
+	{
+		var hours = Math.floor(seconds / 3600);
+		var mins = Math.floor((seconds - (hours * 3600)) / 60);
+		var secs = Math.floor(seconds % 60);
+		
+		var time = "";
+		
+		if (hours != 0)
+		{
+			if (hours < 10)
+			{
+				time += "0" + hours;
+			}
+			else
+			{
+				time += hours;
+			}
+			
+			time += ":";
+		}
+		
+		if (mins < 10)
+		{
+			time += "0" + mins;
+		}
+		else
+		{
+			time += mins;
+		}
+		
+		time += ":";
+		
+		if (secs < 10) 
+		{
+			time += "0" + secs;
+		}
+		else
+		{
+			time += secs;
+		}
+        
+        return time;
 	}
 	
 	function get_realHeight():Float
