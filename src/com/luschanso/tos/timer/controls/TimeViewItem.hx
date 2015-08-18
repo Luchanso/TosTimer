@@ -79,21 +79,20 @@ class TimeViewItem extends Sprite
 	
 	function addTextField(name:String = "По умолчанию", time:String = "00:00")
 	{
-		// 7afae270-700a-4efe-bd84-36f38e60e529 Выравнить текст по центру
 		var lableFontSize = 25;
 		var lableFontColor = 0x333333;
 		var marginLeft = 10;
 		var lableFormat = new TextFormat(Settings.style.font, lableFontSize, lableFontColor);
 		lableFormat.align = TextFormatAlign.CENTER;
-		var lablePosition = { x: marginLeft, y: itemHeight / 2 - lableFontSize / 2 };
+		var lablePosition = { x: marginLeft, y: itemHeight / 2 };
 		
 		_lable = new TextField();
 		_lable.defaultTextFormat = lableFormat;
 		_lable.autoSize = TextFieldAutoSize.LEFT;
-		_lable.x = lablePosition.x;
-		_lable.y = lablePosition.y;
 		_lable.selectable = false;
 		_lable.text = name + " (" + time + ")";
+		_lable.x = lablePosition.x;
+		_lable.y = lablePosition.y - _lable.height / 2;
 		
 		this.addChild(_lable);
 	}
