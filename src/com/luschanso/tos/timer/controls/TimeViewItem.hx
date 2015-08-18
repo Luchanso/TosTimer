@@ -17,7 +17,8 @@ import openfl.text.TextFormatAlign;
 class TimeViewItem extends Sprite
 {
 	// effb6300-220c-48d3-8323-36da448f8361 Добавить возможность смены имени и времени таймера
-	public var realHeight(get, null):Float;	
+	public var realHeight(get, null):Float;
+	public var isPause(get, set):Bool;
 	
 	static inline var itemHeightPercent	:Float 	= 0.1;
 	static inline var itemWidthPercent	:Float 	= 1;
@@ -29,6 +30,7 @@ class TimeViewItem extends Sprite
 	var _timeName		:String;
 	var _time			:Float;
 	var _lable			:TextField;
+	var _timerIsPause	:Bool;
 
 	public function new(name:String = "", time:Float = 0)
 	{
@@ -41,11 +43,22 @@ class TimeViewItem extends Sprite
 		this.addSplitter();
 		this.addTextField(null, secondsToTimeString(time));
 		this.addButton();
+		
+		this.addEventListener(MouseEvent.CLICK, toggleState);
 	}
 	
 	function toggleState(e:MouseEvent)
 	{
-		// f7307e53-4ab2-4ebd-aa20-86c350fa1104 доделать смену кнопок
+		if (buttonStart.visible) 
+		{
+			buttonStart.visible = false;
+			buttonStop.visible = true;
+		}
+		else
+		{
+			buttonStart.visible = true;
+			buttonStop.visible = false;
+		}
 	}
 	
 	function addButton() 
@@ -164,5 +177,27 @@ class TimeViewItem extends Sprite
 	{
 		return this.itemHeight;
 	}
+
+	function get_isPause():Bool
+	{
+		return _timerIsPause;
+	}
 	
+	function set_isPause(value:Bool):Bool 
+	{
+		if (value) 
+		{
+			buttonStart.visible = true;
+			buttonStop.visible = false;
+			dispatchEvent(new TimeViewItemEvent(TimeViewItemEvent.PAUSE));
+		}
+		else 
+		{
+			buttonStart.visible = false;
+			buttonStop.visible = true;
+			dispatchEvent(new TimeViewItemEvent(TimeViewItemEvent.START));
+		}
+		
+		return _timerIsPause = value;
+	}
 }
