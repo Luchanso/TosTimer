@@ -25,8 +25,8 @@ class TimeViewItem extends Sprite
 	
 	var itemWidth 		:Float;
 	var itemHeight		:Float;
-	var buttonStart 	:Bitmap;
-	var buttonStop	 	:Bitmap;
+	var buttonStart 	:Sprite;
+	var buttonStop	 	:Sprite;
 	var _timeName		:String;
 	var _time			:Float;
 	var _lable			:TextField;
@@ -44,7 +44,8 @@ class TimeViewItem extends Sprite
 		this.addTextField(null, secondsToTimeString(time));
 		this.addButton();
 		
-		this.addEventListener(MouseEvent.CLICK, toggleState);
+		//this.mouseChildren = true;
+		//this.mouseEnabled = true;
 	}
 	
 	function toggleState(e:MouseEvent)
@@ -68,7 +69,8 @@ class TimeViewItem extends Sprite
 		var buttonPosition = { x: itemWidth - iconMarginRight - iconSize, y: itemHeight / 2 - iconSize / 2};
 		
 		var playData = Assets.getBitmapData("icons/play.png");
-		buttonStart = new Bitmap(playData, PixelSnapping.AUTO, true);
+		buttonStart = new Sprite();
+		buttonStart.addChild(new Bitmap(playData, PixelSnapping.AUTO, true));
 		buttonStart.width = iconSize;
 		buttonStart.height = iconSize;
 		buttonStart.x = buttonPosition.x;
@@ -77,8 +79,9 @@ class TimeViewItem extends Sprite
 		
 		addChild(buttonStart);
 		
-		var pauseData = Assets.getBitmapData("icons/pause.png");
-		buttonStop = new Bitmap(pauseData, PixelSnapping.AUTO, true);
+		var pauseData = Assets.getBitmapData("icons/pause.png");		
+		buttonStop = new Sprite();
+		buttonStop.addChild(new Bitmap(pauseData, PixelSnapping.AUTO, true));
 		buttonStop.width = iconSize;
 		buttonStop.height = iconSize;
 		buttonStop.x = buttonPosition.x;
