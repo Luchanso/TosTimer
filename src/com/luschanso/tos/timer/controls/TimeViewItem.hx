@@ -16,7 +16,8 @@ import openfl.text.TextFormatAlign;
  */
 class TimeViewItem extends Sprite
 {
-	// effb6300-220c-48d3-8323-36da448f8361 Добавить возможность смены имени и времени таймера
+	public var nameTimer(get, set):String;
+	public var time(get, set):Float;
 	public var realHeight(get, null):Float;
 	public var isPause(get, set):Bool;
 	
@@ -43,9 +44,6 @@ class TimeViewItem extends Sprite
 		this.addSplitter();
 		this.addTextField(null, secondsToTimeString(time));
 		this.addButton();
-		
-		//this.mouseChildren = true;
-		//this.mouseEnabled = true;
 	}
 	
 	function toggleState(e:MouseEvent)
@@ -106,11 +104,16 @@ class TimeViewItem extends Sprite
 		_lable.defaultTextFormat = lableFormat;
 		_lable.autoSize = TextFieldAutoSize.LEFT;
 		_lable.selectable = false;
-		_lable.text = name + " (" + time + ")";
+		_lable.text = formattingLable(name, time);
 		_lable.x = lablePosition.x;
 		_lable.y = lablePosition.y - _lable.height / 2;
 		
 		this.addChild(_lable);
+	}
+	
+	function formattingLable(name:String, time:String):String
+	{
+		return name + " (" + time + ")";
 	}
 	
 	function addSplitter():Void
@@ -202,5 +205,27 @@ class TimeViewItem extends Sprite
 		}
 		
 		return _timerIsPause = value;
+	}	
+	
+	function get_nameTimer():String 
+	{
+		return _timeName;
+	}
+	
+	function set_nameTimer(value:String):String 
+	{
+		_lable.text = formattingLable(value, secondsToTimeString(_time));
+		return _timeName = value;
+	}
+	
+	function get_time():Float 
+	{
+		return _time;
+	}
+	
+	function set_time(value:Float):Float 
+	{
+		_lable.text = formattingLable(_timeName, secondsToTimeString(value));
+		return _time = value;
 	}
 }
