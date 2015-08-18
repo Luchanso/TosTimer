@@ -18,7 +18,7 @@
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
 	<haxelib name="haxeui" />
-	<haxelib name="svg" />
+	<haxelib name="dconsole" />
 	
 	<assets path="assets/icons" rename="icons" />
 	
