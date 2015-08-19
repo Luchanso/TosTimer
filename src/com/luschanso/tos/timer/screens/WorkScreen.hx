@@ -2,6 +2,7 @@ package com.luschanso.tos.timer.screens;
 
 import com.luschanso.tos.timer.controls.BackButton;
 import com.luschanso.tos.timer.controls.EditButton;
+import com.luschanso.tos.timer.controls.TimeViewItem;
 import com.luschanso.tos.timer.Screen;
 import com.luschanso.tos.timer.ScreenEvent;
 import openfl.events.MouseEvent;
@@ -21,6 +22,7 @@ class WorkScreen extends Screen
 	var editButton 		: EditButton;
 	var mainViewTime   	: TextField;
 	var summViewTime 	: TextField;
+	var timerList 		: List<TimeViewItem>;
 	
 	// 4c9adfb8-5828-4cd7-b760-60643b9a4222 TODO: Реализовать класс WorkScreen
 	public function new()
@@ -63,7 +65,7 @@ class WorkScreen extends Screen
 	
 	function addTimerList() 
 	{
-		
+		timerList = new List<TimeViewItem>();
 	}
 	
 	function addSummaryTimer() 
