@@ -20,6 +20,11 @@ class TimerManager
 			
 		}
 	}
+	
+	public function load() 
+	{
+		
+	}
 
 	private function new() 
 	{		
