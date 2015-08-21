@@ -17,6 +17,9 @@ import openfl.text.TextFormatAlign;
 class TimeViewItem extends Sprite
 {
 	public var nameTimer(get, set):String;
+	/**
+	 * Time in seconds
+	 */
 	public var time(get, set):Float;
 	public var realHeight(get, null):Float;
 	public var isPause(get, set):Bool;
@@ -223,9 +226,9 @@ class TimeViewItem extends Sprite
 		return _time;
 	}
 	
-	function set_time(value:Float):Float 
+	function set_time(seconds:Float):Float 
 	{
-		_lable.text = formattingLable(_timeName, secondsToTimeString(value));
+		_lable.text = formattingLable(_timeName, secondsToTimeString(seconds));
 		return _time = value;
 	}
 }
