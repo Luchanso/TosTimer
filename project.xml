@@ -20,6 +20,7 @@
 	<haxelib name="dconsole" />
 	
 	<assets path="assets/icons" rename="icons" />
+	<assets path="assets/fonts" rename="fonts" />
 	
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->

@@ -24,6 +24,7 @@ class Main extends Sprite
 	{
 		super();
 		
+		Settings.init();
 		testRun();
 		
 		addEventListener(Event.ADDED_TO_STAGE, initialization);

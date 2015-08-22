@@ -1,4 +1,5 @@
 package com.luschanso.tos.timer;
+import openfl.Assets;
 
 /**
  * ...
@@ -21,5 +22,9 @@ class Settings
 	public static var style = {
 		font: "Arial",
 		uiColor: 0x0080F0
+	}
+	
+	public static function init() {
+		trace(Assets.getFont("fonts/arial.ttf").fontName);
 	}
 }
