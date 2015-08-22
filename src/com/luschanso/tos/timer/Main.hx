@@ -1,7 +1,7 @@
 package com.luschanso.tos.timer;
 
 import com.luschanso.tos.timer.screens.MainMenu;
-import com.luschanso.tos.timer.screens.MainTest;
+import com.luschanso.tos.timer.tests.MainTest;
 import com.luschanso.tos.timer.screens.WorkScreen;
 import haxe.unit.TestRunner;
 import openfl.display.Sprite;

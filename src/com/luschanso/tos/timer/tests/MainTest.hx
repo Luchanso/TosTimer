@@ -1,4 +1,4 @@
-package com.luschanso.tos.timer.screens;
+package com.luschanso.tos.timer.tests;
 
 import haxe.unit.TestCase;
 import sys.io.File;
