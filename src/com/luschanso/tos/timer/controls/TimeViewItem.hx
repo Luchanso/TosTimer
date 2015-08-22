@@ -1,5 +1,6 @@
 package com.luschanso.tos.timer.controls;
 
+import com.luschanso.tos.timer.WorkTimer;
 import openfl.Assets;
 import openfl.display.Bitmap;
 import openfl.display.PixelSnapping;
@@ -20,9 +21,10 @@ class TimeViewItem extends Sprite
 	/**
 	 * Time in seconds
 	 */
-	public var time(get, set):Float;
-	public var realHeight(get, null):Float;
-	public var isPause(get, set):Bool;
+	public var time(get, set)			:Float;
+	public var realHeight(get, null)	:Float;
+	public var isPause(get, set)		:Bool;
+	public var controller(get, set)		:WorkTimer;
 	
 	static inline var itemHeightPercent	:Float 	= 0.1;
 	static inline var itemWidthPercent	:Float 	= 1;
@@ -35,6 +37,7 @@ class TimeViewItem extends Sprite
 	var _time			:Float;
 	var _lable			:TextField;
 	var _timerIsPause	:Bool;
+	var _controller		:WorkTimer;
 
 	public function new(name:String = "", time:Float = 0)
 	{
@@ -49,7 +52,21 @@ class TimeViewItem extends Sprite
 		this.addButton();
 	}
 	
-	function toggleState(e:MouseEvent)
+	public function setState(stateIsPause:Bool)
+	{
+		if (stateIsPause) 
+		{
+			buttonStart.visible = true;
+			buttonStop.visible = false;
+		}
+		else
+		{
+			buttonStart.visible = false;
+			buttonStop.visible = true;
+		}
+	}
+	
+	function toggleState(e:MouseEvent = null)
 	{
 		if (buttonStart.visible) 
 		{
@@ -229,6 +246,16 @@ class TimeViewItem extends Sprite
 	function set_time(seconds:Float):Float 
 	{
 		_lable.text = formattingLable(_timeName, secondsToTimeString(seconds));
-		return _time = value;
+		return _time = seconds;
+	}
+	
+	function get_controller():WorkTimer 
+	{
+		return _controller;
+	}
+	
+	function set_controller(value:WorkTimer):WorkTimer 
+	{
+		return _controller = value;
 	}
 }
