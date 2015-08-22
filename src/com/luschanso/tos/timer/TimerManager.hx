@@ -27,8 +27,15 @@ class TimerManager
 	}
 
 	private function new() 
-	{		
+	{
+		timerList = new List<WorkTimer>();
+		
 	}
+	
+	function loadFromStorage()
+	{
+		// 227e50d6-172c-4b79-b42c-13a83c950b60 TODO: Сделать сохранение и загрузку файлов
+	} 
 	
 	static function get_instance():TimerManager 
 	{
