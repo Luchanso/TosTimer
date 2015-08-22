@@ -1,7 +1,9 @@
 package com.luschanso.tos.timer;
 
 import com.luschanso.tos.timer.screens.MainMenu;
+import com.luschanso.tos.timer.screens.MainTest;
 import com.luschanso.tos.timer.screens.WorkScreen;
+import haxe.unit.TestRunner;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.Lib;
@@ -22,7 +24,16 @@ class Main extends Sprite
 	{
 		super();
 		
+		testRun();
+		
 		addEventListener(Event.ADDED_TO_STAGE, initialization);
+	}
+	
+	function testRun()
+	{
+		var testRunner = new TestRunner();
+		testRunner.add(new MainTest());
+		testRunner.run();
 	}
 	
 	function initialization(e:Event):Void
