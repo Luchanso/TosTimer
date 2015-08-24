@@ -3,6 +3,7 @@ package com.luschanso.tos.timer;
 import com.luschanso.tos.timer.WorkTimer;
 import haxe.Serializer;
 import haxe.Unserializer;
+import sys.FileSystem;
 import sys.io.File;
 
 /**
@@ -31,7 +32,11 @@ class TimerManager
 				timerIsFound = true;
 				timer.start();
 				
-				activeTimer.stop();
+				if (activeTimer != null)
+				{
+					activeTimer.stop();
+				}
+				
 				activeTimer = timer;
 				
 				break;
@@ -46,9 +51,19 @@ class TimerManager
 	
 	public function loadFromStorage()
 	{
-		var dataTimer = File.getContent(saveFilePath);
-		var unserializer = new Unserializer(dataTimer);
+		if (!FileSystem.exists(saveFilePath)) 
+		{
+			return;
+		}
 		
+		var dataTimer = File.getContent(saveFilePath);
+		
+		if (dataTimer == "")
+		{
+			return;
+		}
+		
+		var unserializer = new Unserializer(dataTimer);		
 		var listStrings:List<String> = unserializer.unserialize();
 		var dataStrings:Array<String> = Lambda.array(listStrings);
 		
