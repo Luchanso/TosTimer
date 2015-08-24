@@ -69,6 +69,7 @@ class WorkScreen extends Screen
 		this.loadTimers();
 	}
 	
+	// fcc6ed33-9e5d-437f-a0b8-d19869fb316a Сделать систему отображения и скрола списка
 	function loadTimers()
 	{
 		var timerManager = TimerManager.instance;
