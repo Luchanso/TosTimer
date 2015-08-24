@@ -1,5 +1,6 @@
 package com.luschanso.tos.timer.tests;
 
+import com.luschanso.tos.timer.TimerManager;
 import com.luschanso.tos.timer.WorkTimer;
 import haxe.unit.TestCase;
 import sys.io.File;
@@ -42,6 +43,26 @@ class MainTest extends TestCase
 		
 		assertEquals(workTimer2.name, testVarName);
 		assertEquals(workTimer2.time, testVarTime);
+	}
+	
+	public function testTimerManager()
+	{
+		var timerManager = TimerManager.instance;
+		timerManager.timerList.push(new WorkTimer("test1", 15));
+		timerManager.timerList.push(new WorkTimer("test2", 30));
+		
+		timerManager.saveToStorage();
+		
+		timerManager.timerList = new List<WorkTimer>();
+		timerManager.loadFromStorage();
+		
+		assertEquals(Lambda.count(timerManager.timerList), 2);
+		
+		assertEquals(Lambda.array(timerManager.timerList)[0].name, "test1");
+		assertEquals(Lambda.array(timerManager.timerList)[0].time, 15);
+		
+		assertEquals(Lambda.array(timerManager.timerList)[1].name, "test2");
+		assertEquals(Lambda.array(timerManager.timerList)[1].time, 30);
 	}
 	
 }
