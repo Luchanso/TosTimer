@@ -1,5 +1,7 @@
 package com.luschanso.tos.timer;
+
 import com.luschanso.tos.timer.WorkTimer;
+import openfl.filesystem.File;
 
 /**
  * ...
@@ -7,7 +9,10 @@ import com.luschanso.tos.timer.WorkTimer;
  */
 class TimerManager
 {
-	static var _instance:TimerManager = new TimerManager();	
+	static inline var 	saveFilePath	= "timers.bin";
+	static var 			_instance		:TimerManager = new TimerManager();	
+	static private var fileOutput;
+	
 	public static var instance(get, null):TimerManager;
 	
 	public var timerList	:List<WorkTimer>;
@@ -15,13 +20,29 @@ class TimerManager
 	
 	public var play(timerName:String):Void
 	{
-		for (var timer in timerList) 
+		var timerIsFound = false;
+		
+		for (timer in timerList) 
 		{
-			
+			if (timer.name == timerName)
+			{
+				timerIsFound = true;
+				timer.start();
+				
+				activeTimer.stop();
+				activeTimer = timer;
+				
+				break;
+			}
+		}
+		
+		if (!timerIsFound)
+		{			
+			throw("Not found timer with name: " + timerName);
 		}
 	}
 	
-	public function load() 
+	public function load()
 	{
 		
 	}
@@ -32,10 +53,22 @@ class TimerManager
 		
 	}
 	
-	function loadFromStorage()
+	function public loadFromStorage()
 	{
-		// 227e50d6-172c-4b79-b42c-13a83c950b60 TODO: Сделать сохранение и загрузку файлов
-	} 
+		
+	}
+	
+	function public saveToStorage()
+	{
+		var fileOutput = File.write(saveFilePath);
+		
+		for (timer in timerList)
+		{
+			
+		}
+		
+		fileOutput.close();
+	}
 	
 	static function get_instance():TimerManager 
 	{
