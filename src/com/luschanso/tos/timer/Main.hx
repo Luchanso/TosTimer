@@ -18,14 +18,19 @@ import openfl.text.TextFormatAlign;
  */
 class Main extends Sprite 
 {
-	var screenList:List<Screen>;
+	var screenList		:List<Screen>;
+	var timerManager	:TimerManager;
 	
 	public function new() 
 	{
 		super();
 		
 		Settings.init();
+		
 		testRun();
+		
+		timerManager = new TimerManager();
+		timerManager.loadFromStorage();
 		
 		addEventListener(Event.ADDED_TO_STAGE, initialization);
 	}
