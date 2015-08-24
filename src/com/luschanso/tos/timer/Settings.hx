@@ -25,6 +25,6 @@ class Settings
 	}
 	
 	public static function init() {
-		trace(Assets.getFont("fonts/arial.ttf").fontName);
+		Assets.getFont("fonts/arial.ttf");
 	}
 }
