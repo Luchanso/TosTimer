@@ -2,6 +2,8 @@ package com.luschanso.tos.timer;
 
 import com.luschanso.tos.timer.controls.TimeViewItem;
 import com.luschanso.tos.timer.controls.TimeViewItemEvent;
+import haxe.Serializer;
+import haxe.Unserializer;
 import openfl.events.TimerEvent;
 import openfl.utils.Timer;
 
@@ -12,7 +14,7 @@ import openfl.utils.Timer;
 class WorkTimer
 {
 	static inline var second = 1000;
-	static inline var separate = ";";
+
 	var _name		: String;
 	var _time		: Float;
 	var _linkUI		: TimeViewItem;	
@@ -41,18 +43,25 @@ class WorkTimer
 		this._timer.addEventListener(TimerEvent.TIMER, tick);
 	}
 	
-	public function serialize():String
+	public static function serialize(workTimer:WorkTimer):String
 	{
-		var data = screenSymbolsSerialize(this._name) + separate + screenSymbolsSerialize(this._time);
-		return data;
+		var serializer = new Serializer();
+		serializer.serialize(workTimer.name);
+		serializer.serialize(workTimer.time);
+		
+		return serializer.toString();
 	}
 	
-	// 6141aab7-1d4d-451f-894e-c3ae095f9be4 TODO: Доделать сериализацию объекта WorkTimer
-	/*public function deserialize():WorkTimer
-	{
-		var data = screenSymbolsSerialize(this._name) + separate + screenSymbolsSerialize(this._time);
-		return data
-	}*/
+	public static function unserialize(data:String):WorkTimer
+	{		
+		var unserializer = new Unserializer(data);
+		var name = cast(unserializer.unserialize(), String);
+		var time = cast(unserializer.unserialize(), Float);
+		
+		var workTimer = new WorkTimer(name, time);
+		
+		return workTimer;
+	}
 	
 	public function start():Void
 	{
@@ -64,18 +73,6 @@ class WorkTimer
 	{
 		this._timer.stop();
 		this._linkUI.setState(false);
-	}
-	
-	function screenSymbolsSerialize(string:String):String
-	{
-		var r = new EReg(separate, "i");
-		return r.replace(string, "\\" + separate);
-	}
-	
-	function unscreenSymbolSerialize(string:String):String
-	{
-		var r = new EReg("\\" + separate, "i");
-		return r.replace(string, separate);
 	}
 	
 	function ui_callback_stop(e:TimeViewItemEvent):Void
