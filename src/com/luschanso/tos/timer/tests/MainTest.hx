@@ -63,6 +63,11 @@ class MainTest extends TestCase
 		
 		assertEquals(Lambda.array(timerManager.timerList)[1].name, "test2");
 		assertEquals(Lambda.array(timerManager.timerList)[1].time, 30);
+		
+		timerManager.timerList = new List<WorkTimer>();
+		var file = File.write("timers.bin");
+		file.writeString("");
+		file.close();
 	}
 	
 }
