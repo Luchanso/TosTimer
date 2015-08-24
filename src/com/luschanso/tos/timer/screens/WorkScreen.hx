@@ -66,6 +66,19 @@ class WorkScreen extends Screen
 	function addTimerList() 
 	{
 		timerList = new List<TimeViewItem>();
+		this.loadTimers();
+	}
+	
+	function loadTimers()
+	{
+		var timerManager = TimerManager.instance;
+		
+		for (workTimer in timerManager.timerList) 
+		{
+			var ui = new TimeViewItem(workTimer.name, workTimer.time);
+			workTimer.UI = ui;
+			timerList.add(ui);
+		}
 	}
 	
 	function addSummaryTimer() 
