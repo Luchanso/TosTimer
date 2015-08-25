@@ -48,7 +48,7 @@ class TimeViewItem extends Sprite
 		
 		this.fillBackground();
 		this.addSplitter();
-		this.addTextField(null, secondsToTimeString(time));
+		this.addTextField(name, secondsToTimeString(time));
 		this.addButton();
 	}
 	
