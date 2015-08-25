@@ -49,7 +49,7 @@ class Main extends Sprite
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, initialization);
 		
-		this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 		
 		this.fillScreenList();
 		this.addScreenList();
@@ -121,19 +121,14 @@ class Main extends Sprite
 	 * @param	e
 	 */
 	function keyUp(e:KeyboardEvent):Void 
-	{
-		if (e.keyCode == 27) 
-		{
+	{		
+		if (e.keyCode == 27 || e.keyCode == 1073742094)
+		{			
 			if (lastScreen != null)
-			{				
+			{
 				changeScreen(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, currentScreen, lastScreen.screenName));
 			}
-			else
-			{				
-				Sys.exit(0);
-			}
-			e.stopImmediatePropagation();
 		}
+
 	}
-	
 }
