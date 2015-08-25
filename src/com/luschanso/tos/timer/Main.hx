@@ -6,6 +6,7 @@ import com.luschanso.tos.timer.screens.WorkScreen;
 import haxe.unit.TestRunner;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import openfl.events.KeyboardEvent;
 import openfl.Lib;
 import openfl.text.TextField;
 import openfl.text.TextFieldAutoSize;
@@ -18,6 +19,8 @@ import openfl.text.TextFormatAlign;
  */
 class Main extends Sprite 
 {
+	var lastScreen 		:Screen;
+	var currentScreen	:Screen;
 	var screenList		:List<Screen>;
 	var timerManager	:TimerManager;
 	
@@ -46,6 +49,8 @@ class Main extends Sprite
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, initialization);
 		
+		this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		
 		this.fillScreenList();
 		this.addScreenList();
 	}
@@ -62,7 +67,9 @@ class Main extends Sprite
 		var workScreen = new WorkScreen();
 		workScreen.addEventListener(ScreenEvent.CALL_SCREEN_BY_NAME, changeScreen);
 		workScreen.setName("WorkScreen");
+		
 		workScreen.show();
+		currentScreen = workScreen;
 		
 		this.screenList.add(mainMenu);
 		this.screenList.add(workScreen);
@@ -85,12 +92,14 @@ class Main extends Sprite
 	
 	function changeScreen(e:ScreenEvent):Void
 	{
+		lastScreen = e.eventOwner;
 		e.eventOwner.hide();
 		
 		for (screen in screenList) 
 		{
 			if (screen.screenName == e.calledScreenName) 
 			{
+				currentScreen = screen;
 				screen.show();
 				break;
 			}
@@ -105,6 +114,26 @@ class Main extends Sprite
 		this.graphics.beginFill(0xF90006);
 		this.graphics.drawRect(halfWidthWindow, 0, 2, heightWindow);
 		this.graphics.endFill();
+	}
+	
+	/**
+	 * Back button realization
+	 * @param	e
+	 */
+	function keyUp(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == 27) 
+		{
+			if (lastScreen != null)
+			{				
+				changeScreen(new ScreenEvent(ScreenEvent.CALL_SCREEN_BY_NAME, currentScreen, lastScreen.screenName));
+			}
+			else
+			{				
+				Sys.exit(0);
+			}
+			e.stopImmediatePropagation();
+		}
 	}
 	
 }
