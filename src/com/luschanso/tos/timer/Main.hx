@@ -29,7 +29,7 @@ class Main extends Sprite
 		
 		testRun();
 		
-		timerManager = new TimerManager();
+		timerManager = TimerManager.instance;
 		timerManager.loadFromStorage();
 		
 		addEventListener(Event.ADDED_TO_STAGE, initialization);
