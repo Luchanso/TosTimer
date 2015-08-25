@@ -2,6 +2,7 @@ package com.luschanso.tos.timer.controls;
 
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
+import openfl.geom.Point;
 
 /**
  * ...
@@ -9,9 +10,12 @@ import openfl.events.MouseEvent;
  */
 class ScrollContainer extends Sprite
 {
-	var _listContent:List<Sprite>;
+	public var listContent(get, null):List<Sprite>;
 	
-	var listContent(get, null):List<Sprite>;
+	var _listContent		:List<Sprite>;
+	var mouseDownPosition	:Point;
+	
+	static inline var distanceScrollEvent = 5;
 
 	public function new() 
 	{
@@ -20,11 +24,21 @@ class ScrollContainer extends Sprite
 		_listContent = new List<Sprite>();
 		
 		addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+	}
+	
+	// 8b7bdcf9-6a93-43a3-9fca-73207b0016c2 Реализовать скрол
+	private function mouseUp(e:MouseEvent):Void 
+	{
+		if (Math.abs(e.stageY - mouseDownPosition.y) > distanceScrollEvent) 
+		{
+			
+		}
 	}
 	
 	private function mouseDown(e:MouseEvent):Void 
 	{
-		trace("test: " + e.localX + "x" + e.localY);
+		mouseDownPosition = new Point(e.stageX, e.stageY);		
 	}
 	
 	function get_listContent():List<Sprite> 
