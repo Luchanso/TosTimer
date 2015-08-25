@@ -2,6 +2,7 @@ package com.luschanso.tos.timer.screens;
 
 import com.luschanso.tos.timer.controls.BackButton;
 import com.luschanso.tos.timer.controls.EditButton;
+import com.luschanso.tos.timer.controls.ScrollContainer;
 import com.luschanso.tos.timer.controls.TimeViewItem;
 import com.luschanso.tos.timer.Screen;
 import com.luschanso.tos.timer.ScreenEvent;
@@ -22,6 +23,7 @@ class WorkScreen extends Screen
 	var editButton 		: EditButton;
 	var mainViewTime   	: TextField;
 	var summViewTime 	: TextField;
+	var scrollContainer : ScrollContainer;
 	var timerList 		: List<TimeViewItem>;
 	
 	// 4c9adfb8-5828-4cd7-b760-60643b9a4222 TODO: Реализовать класс WorkScreen
@@ -67,6 +69,20 @@ class WorkScreen extends Screen
 	{
 		timerList = new List<TimeViewItem>();
 		this.loadTimers();
+		this.addScrollContainer();		
+	}
+	
+	function addScrollContainer()
+	{
+		var scrollMarginTop 	= 150;
+		var scrollMarginLeft 	= 0;
+		
+		scrollContainer = new ScrollContainer();
+		scrollContainer.x = scrollMarginLeft;
+		scrollContainer.y = scrollMarginTop;
+		scrollContainer.addContent(new TimeViewItem("test", 123));
+		
+		this.addChild(scrollContainer);
 	}
 	
 	// fcc6ed33-9e5d-437f-a0b8-d19869fb316a Сделать систему отображения и скрола списка
