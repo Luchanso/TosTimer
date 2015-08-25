@@ -63,7 +63,7 @@ class MenuItem extends Sprite
 		
 		#else
 		
-		var lableFontSize = 62;
+		var lableFontSize = 34;
 		
 		#end
 		
