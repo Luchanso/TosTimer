@@ -8,9 +8,9 @@
 	<!-- output -->
 	<app main="com.luschanso.tos.timer.Main" file="TosTimer" path="bin" />
 	
-	<window background="#FFFFFF" fps="60" />
+	<window background="#FFFFFF" fps="60" orientation="portrait" resizable="false" />
 	<window width="360" height="640" unless="mobile" />
-	<window width="1080" height="1920" if="mobile" />
+	<window width="0" height="0" if="mobile"/>
 	<window resizable="false" orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
