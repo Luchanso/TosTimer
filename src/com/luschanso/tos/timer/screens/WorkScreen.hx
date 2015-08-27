@@ -83,7 +83,6 @@ class WorkScreen extends Screen
 		
 		var i1 = new TimeViewItem("test", 123);
 		var i2 = new TimeViewItem("Проверка", 0);
-		i2.y = i1.y + i1.height;
 		
 		scrollContainer.addContent(i1);
 		scrollContainer.addContent(i2);
